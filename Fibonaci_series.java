@@ -6,7 +6,7 @@ public class Fibonaci_series{
     
     public void fibo(BigInteger a,BigInteger b,int j,int n){
 
-    if(n>2){
+    if(n>j){
     BigInteger c= a.add(b);
     ls.add(c.toString());
     // BigInteger s= b;

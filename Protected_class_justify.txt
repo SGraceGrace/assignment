@@ -1,0 +1,2 @@
+We can access protected members of a class in another class that is present in the same package.Here both class created in same folder .
+While protected members can be accessed anywhere in the same package and outside package only in its child class.

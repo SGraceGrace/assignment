@@ -78,12 +78,19 @@ public class Blackjack_game {
            System.out.println();
            System.out.println("************YOU WON************");
             }
-            else{
+            else if(total2>total1){
             System.out.println();
             System.out.println("Dealer total : "+total2);
             System.out.println("Your total : "+total1);
             System.out.println();
             System.out.println("************DEALER WON************");
+        }
+         else{
+            System.out.println();
+           System.out.println("Your total : "+total1);
+           System.out.println("Dealer's total : "+total2);
+           System.out.println();
+           System.out.println("************DRAW!!!************");
         }
     }
 
@@ -107,8 +114,6 @@ public class Blackjack_game {
         
         Cards_class c = new Cards_class();
 
-        Random rand = new Random();
-
         System.out.println();
         System.out.println("************WELCOME************");
         System.out.println();
@@ -118,8 +123,8 @@ public class Blackjack_game {
         //     return this.generator.nextInt(bound);
         // }
 
-         int x=a.get(rand.nextInt(a.size()));
-         int y=a.get(rand.nextInt(a.size()));
+         int x=a.get(new Random().nextInt(a.size()));
+         int y=a.get(new Random().nextInt(a.size()));
 
          total1=x+y;
 

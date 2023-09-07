@@ -1,26 +1,22 @@
 package practice;
 
-class MyError extends IncompatibleClassChangeError{
-    MyError(String s){
-        super(s);
-    }
-}
 
-class My_error{
-    int a;
-    int b;
-}
+
+// class MyError extends IncompatibleClassChangeError{
+//     MyError(String s){
+//         super(s);
+//     }
+// }
 
 public class Nosuchfielderror_example {
     public static void main(String[] args) {
-        My_error m = new My_error();
-
+My_class m= new My_class();
         try{
           m.c =10;
-          throw new MyError("error");
+          throw new NoSuchFieldError("error");
         }
-        catch (MyError e) {
-           System.out.println(e.getMessage());
+        catch (Error e) {
+           System.out.println("rerror");
         }
     }
 }

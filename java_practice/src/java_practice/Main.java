@@ -1,4 +1,5 @@
-package practice;
+package java_practice;
+
 class Main{
     public static void main(String[] args) {
         Hello h = new Hello();

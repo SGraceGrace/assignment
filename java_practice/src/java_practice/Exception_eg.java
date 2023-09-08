@@ -1,4 +1,5 @@
-package practice;
+package java_practice;
+
 import java.util.*;
 
 class ArithmeticException extends Exception{

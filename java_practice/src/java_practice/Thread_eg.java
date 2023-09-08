@@ -1,4 +1,5 @@
-package practice;
+package java_practice;
+
 
 public class Thread_eg {
     public static void main(String[] args) throws InterruptedException {

@@ -1,4 +1,5 @@
-package practice;
+package java_practice;
+
 import java.util.*;
 
 interface calculator {

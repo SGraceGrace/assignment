@@ -1,5 +1,6 @@
-package practice;
-public class My_class {
+package java_practice;
+
+public class Myclass {
     public static void run(int a)
     {
         a++;
@@ -17,3 +18,4 @@ public class My_class {
         }     
     }  
 }
+

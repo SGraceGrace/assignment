@@ -1,4 +1,4 @@
-package practice;
+package java_practice;
 
 class Practice_method {
     

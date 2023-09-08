@@ -1,4 +1,4 @@
-package practice;
+package java_practice;
 
 class Hello {
     protected class Hello1{
@@ -7,3 +7,4 @@ class Hello {
     }
   }
 }
+

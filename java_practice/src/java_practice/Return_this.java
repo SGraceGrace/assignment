@@ -1,4 +1,4 @@
-package practice;
+package java_practice;
 
 public class Return_this {
 

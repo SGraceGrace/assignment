@@ -1,4 +1,5 @@
-package practice;
+package java_practice;
+
 import java.util.*;
 
 class Myexception extends Exception{
@@ -29,5 +30,6 @@ public class Exception_handle{
         } 
     }
 }
+
 
 

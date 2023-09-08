@@ -193,23 +193,22 @@ public class Black_jack_game_number {
         System.out.println();
         System.out.print("CHOOSE YOUR GAME NUMBER :");
 
-        game_number = sc.nextInt();
+        game_number = sc.nextInt();    // player will choose the number to play
 
-         int x=c.my_hit(size);
-         int y=c.my_hit(size);
-
-         int j=check(a.get(x),"hit");
-         int k=check(a.get(y),"hit");
-         
-         total1=j+k;
-
-         System.out.println();
-         System.out.println("You have " +a.get(x)+ " and " +a.get(y));
+        int x=c.my_hit(size);
+        int j=check(a.get(x),"hit");
+        System.out.print("You have " +a.get(x)+ " and ");
+        remove_val(a,x);
+        
+        int y=c.my_hit(size);
+        int k=check(a.get(y),"hit");
+        System.out.println(a.get(y));
+        remove_val(a,y);
+        
+        total1=j+k;
+        
          System.out.println("Your total is "+total1);
          System.out.println();
-
-         remove_val(a,x);
-         remove_val(a,y);
 
          if(total1<=game_number){
 

@@ -115,16 +115,16 @@ public class Blackjack_game {
            return 10;
         }
         else if(str.contains("ACE")){
-            if(total1+11> 21 && s.equals("hit"))
-             return 1;
-             if(total2+11> 21 && s.equals("stay"))
-             return 1;
+            if(total1+11 < 22 && s.equals("hit"))
+             return 11;
+             if(total2+11 < 22 && s.equals("stay"))
+             return 11;
         }
         else{
         str=str.replaceAll("[a-zA-Z ]","");
         return Integer.parseInt(str);
         }
-        return 11;
+        return 1;
     }
 
     public static void main(String[] args) {
@@ -196,23 +196,19 @@ public class Blackjack_game {
         System.out.println();
 
          int x=c.my_hit(size);
-         int y=c.my_hit(size);
-
          int j=check(a.get(x),"hit");
+         System.out.print("You have " +a.get(x)+ " and ");
+         remove_val(a,x);
+         
+         int y=c.my_hit(size);
          int k=check(a.get(y),"hit");
+         System.out.println(a.get(y));
+         remove_val(a,y);
          
          total1=j+k;
 
-         System.out.print("You have " +a.get(x)+ " and ");
-         
-         remove_val(a,x);
-         
-         System.out.println(a.get(y));
          System.out.println("Your total is "+total1);
          System.out.println();
-
-         
-         remove_val(a,y);
 
          if(total1<22){
 

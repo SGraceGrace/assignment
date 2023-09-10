@@ -59,7 +59,7 @@ class Cards_class1 implements cards1{
                 System.out.println();
                 System.out.println("DEALER BUST");
                 System.out.println();
-                System.out.println("************YOU WON************");
+                System.out.println("************YOU WON (RS." +Black_jack_game_number.amount +")************");
             }
             else{
                 System.out.println();
@@ -76,14 +76,14 @@ class Cards_class1 implements cards1{
            System.out.println("Your total : "+total1);
            System.out.println("Dealer's total : "+total2);
            System.out.println();
-           System.out.println("************YOU WON************");
+           System.out.println("************YOU WON (RS." +Black_jack_game_number.amount +")************");
             }
             else if(total2>total1){
             System.out.println();
             System.out.println("Dealer total : "+total2);
             System.out.println("Your total : "+total1);
             System.out.println();
-            System.out.println("************DEALER WON************");
+            System.out.println("************DEALER WON (RS." +Black_jack_game_number.amount +")************");
         }
          else{
             System.out.println();
@@ -101,6 +101,7 @@ public class Black_jack_game_number {
     static int total2=0;     //dealer's total
     static int game_number=0;
      static int size=51;
+     static int amount=0;
 
     static void remove_val(ArrayList<String> a , int b){
             a.remove(b);
@@ -194,6 +195,11 @@ public class Black_jack_game_number {
         System.out.print("CHOOSE YOUR GAME NUMBER :");
 
         game_number = sc.nextInt();    // player will choose the number to play
+        
+        System.out.println();
+        System.out.print("BIT AMOUNT (RS.10,RS.50,RS.100,RS.500) : ");
+        amount = sc.nextInt();
+        System.out.println();
 
         int x=c.my_hit(size);
         int j=check(a.get(x),"hit");
@@ -241,7 +247,7 @@ public class Black_jack_game_number {
                     if(total1 >game_number){
                         System.out.println("YOU BUST :(");
                         System.out.println();
-                        System.out.println("************DEALER WON************");
+                        System.out.println("************DEALER WON (RS." +amount +")************");
                         break;
                     }
 
@@ -271,7 +277,7 @@ public class Black_jack_game_number {
         else{
             System.out.println("YOU BUST :(");
                         System.out.println();
-                        System.out.println("************DEALER WON************");
+                        System.out.println("************DEALER WON (RS." +amount+ ")************");
         }
     }
 }

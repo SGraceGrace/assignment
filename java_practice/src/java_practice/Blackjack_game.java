@@ -12,27 +12,25 @@ interface cards{
     void dealer_stay(int total1,int total2 , int size);
     void result(int total1,int total2);
 }
+
 class Cards_class implements cards{
 
     // my_hit method performs when player choose to hit ...this method randomly generate card for player...
-
     public int my_hit(int size){                  
       int x = new Random().nextInt(0,size);
       return x;
      }
 
-        /*  my_stay method performs when player choose to stay ...after player give stay......it's dealer's turn .....
-         checks dealer's total , if <17 dealer will hit ...if dealer's total >21 dealer bust....*/
-
-     public void my_stay(int total1,int total2, ArrayList<String> a , int size){
-        
+   /*  my_stay method performs when player choose to stay ...after player give stay......it's dealer's turn .....
+       checks dealer's total , if <17 dealer will hit ...if dealer's total >21 dealer bust....*/
+    
+    public void my_stay(int total1,int total2, ArrayList<String> a , int size){      
         if(total2<17 && total2<22){
-
+        	
             int f = dealer_hit(a , size);
             total2=total2+Blackjack_game.check(a.get(f),"stay");
-
+            
             System.out.println("Now Dealer's total :" +total2);
-
             my_stay(total1,total2,a , size);     //recursion until dealer's total exceeds 17...
         }
         else{
@@ -41,25 +39,20 @@ class Cards_class implements cards{
      }
 
      // dealer_hit method will randomly generate cards for dealer... 
-
-     public int dealer_hit(ArrayList<String> a , int size){
-       
+     public int dealer_hit(ArrayList<String> a , int size){     
         int x = new Random().nextInt(0,51);
-
         System.out.println();
         System.out.println("Dealer drew :"+a.get(x));
-
         return x;
      }
 
     // dealer_stay method checks dealer's total exceeds 21...if exceeds dealer bust
-
      public void dealer_stay(int total1,int total2 , int size){
             if(total2 >21){
                 System.out.println();
                 System.out.println("DEALER BUST");
                 System.out.println();
-                System.out.println("************YOU WON************");
+                System.out.println("************YOU WON (RS."+Blackjack_game.amount +")************");
             }
             else{
                 System.out.println();
@@ -69,21 +62,20 @@ class Cards_class implements cards{
      }
 
      // result method will compare player's total and dealer's total ....the higher will win the match..
-
      public void result(int total1,int total2){
         if(total1>total2){
         System.out.println();
         System.out.println("Your total : "+total1);
         System.out.println("Dealer's total : "+total2);
         System.out.println();
-        System.out.println("************YOU WON************");
+        System.out.println("************YOU WON (RS."+Blackjack_game.amount + ")************");
          }
          else if(total2>total1){
          System.out.println();
          System.out.println("Dealer total : "+total2);
          System.out.println("Your total : "+total1);
          System.out.println();
-         System.out.println("************DEALER WON************");
+         System.out.println("************DEALER WON (RS."+Blackjack_game.amount + ")************");
      }
       else{
          System.out.println();
@@ -100,16 +92,15 @@ public class Blackjack_game {
     static int total1=0;     //player's total
     static int total2=0;     //dealer's total
     static int size=51;
+    static int amount=0;
 
     // remove the drawn card from arraylist
-
     static void remove_val(ArrayList<String> a , int b){
             a.remove(b);
             size--;
     }
-
+    
     // check the number in string and seperate the number from string 
-
    public static int check(String str,String s){
         if(str.contains("KING") || str.contains("QUEEN") || str.contains("JOKER")){
            return 10;
@@ -194,6 +185,11 @@ public class Blackjack_game {
         System.out.println();
         System.out.println("************WELCOME************");
         System.out.println();
+        
+        System.out.print("BIT AMOUNT (RS.10,RS.50,RS.100,RS.500) : ");
+        amount = sc.nextInt();
+        System.out.println();
+        
 
          int x=c.my_hit(size);
          int j=check(a.get(x),"hit");
@@ -209,8 +205,6 @@ public class Blackjack_game {
 
          System.out.println("Your total is "+total1);
          System.out.println();
-
-         if(total1<22){
 
          int z = new Random().nextInt(0,size);
 
@@ -241,7 +235,7 @@ public class Blackjack_game {
                     if(total1 >21){
                         System.out.println("YOU BUST :(");
                         System.out.println();
-                        System.out.println("************DEALER WON************");
+                        System.out.println("************DEALER WON (RS."+Blackjack_game.amount +")************");
                         break;
                     }
 
@@ -267,11 +261,5 @@ public class Blackjack_game {
 
              c.my_stay(total1,total2,a,size);
             }
-        }
-        else{
-            System.out.println("YOU BUST :(");
-            System.out.println();
-            System.out.println("************DEALER WON************");
-        }
     }
 }

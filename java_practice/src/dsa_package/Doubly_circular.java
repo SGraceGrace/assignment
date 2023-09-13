@@ -213,8 +213,8 @@ public class Doubly_circular {
 			System.out.println(
 					"1.INSERT AT BEGIN \n2.INSERT AT END " 
 			+ "\n3.INSERT AT SPECIFIC POSITION \n4.DELETE AT BEGIN "
-			+ "\n5.DELETE AT END \n6.DELETE AT SPECIFIC POSITION \n7.TRAVERSE \n8.REVERSE" 
-			+ " \n9.EXIT");
+			+ "\n5.DELETE AT END \n6.DELETE AT SPECIFIC POSITION \n7.TRAVERSE \n8.REVERSE \n9.SEARCH" 
+			+ " \n10.EXIT");
 
 			System.out.print("\nENTER YOUR CHOICE :");
 			choice = sc.nextInt();
@@ -256,10 +256,21 @@ public class Doubly_circular {
 				l.reverse();
 				break;
 			case 9:
+				System.out.print("\nENTER ELEMENT TO SEARCH :");
+				int val3 = sc.nextInt();
+				int x=l.search(val3);
+				if(x==1) {
+					System.out.println("ELEMENT FOUND...");
+				}
+				else {
+					System.out.println("ELEMENT NOT FOUND...");
+				}
+				break;
+			case 10:
 				System.out.println("END...");
 				break;
 			}
-		} while (choice < 9);
+		} while (choice < 10);
 	}
 }
 

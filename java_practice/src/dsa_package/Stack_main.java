@@ -46,16 +46,7 @@ class Stack {
 		}
 	}
 
-	int search(int val) {
-
-		for (int i = 0; i <= top; i++) {
-			if (stack[i] == val)
-				return i;
-		}
-		return -1;
-	}
-
-	void traverse() {
+	void display() {
 		for (int i = 0; i <= top; i++) {
 			System.out.print(stack[i] + " ");
 		}
@@ -84,7 +75,7 @@ public class Stack_main {
 
 			System.out.println();
 			System.out.println("ENTER THE OPERATION TO PERFORM :");
-			System.out.println("1.PUSH 2.POP 3.CHECK FULL 4.CHECK EMPTY 5.SEARCH 6.TRAVERSE 7.PEEK 8.EXIT");
+			System.out.println("1.PUSH 2.POP 3.CHECK FULL 4.CHECK EMPTY 5.DISPLAY 6.PEEK 7.EXIT");
 			choice = sc.nextInt();
 
 			switch (choice) {
@@ -113,23 +104,12 @@ public class Stack_main {
 				break;
 
 			case 5:
-				System.out.print("ENTER ELEMENT TO SEARCH :");
-				int val2 = sc.nextInt();
-				int x = s.search(val2);
-				if (x == -1) {
-					System.out.println("ELEMENT NOT FOUND");
-				} else {
-					System.out.println("ELEMENT FOUND AT :" + x);
-				}
-				break;
-
-			case 6:
-				System.out.print("TRAVERSE THE STACK :");
-				s.traverse();
+				System.out.print("DISPLAY THE STACK :");
+				s.display();
 				System.out.println();
 				break;
 
-			case 7:
+			case 6:
 				int y = s.peek();
 				if (y == -1) {
 					System.out.println("STACK IS EMPTY");
@@ -142,6 +122,6 @@ public class Stack_main {
 				System.out.print("END...");
 				break;
 			}
-		} while (choice < 8);
+		} while (choice < 7);
 	}
 }

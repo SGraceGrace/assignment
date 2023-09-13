@@ -1,15 +1,18 @@
 package java_practice;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 //Time complexity :O(2^n) Space complexity :O(n) 
 
 interface cards{
     int  my_hit(int size);
     int dealer_hit(ArrayList<String> a , int size);
-    void my_stay(int total1,int total2, ArrayList<String> a , int size);
+    void my_stay(int total1,int total2, ArrayList<String> a , int size,TreeMap<Integer,String> m);
     void dealer_stay(int total1,int total2 , int size);
     void result(int total1,int total2);
 }
@@ -25,14 +28,15 @@ class Cards_class implements cards{
    /*  my_stay method performs when player choose to stay ...after player give stay......it's dealer's turn .....
        checks dealer's total , if <17 dealer will hit ...if dealer's total >21 dealer bust....*/
     
-    public void my_stay(int total1,int total2, ArrayList<String> a , int size){  //Time complexity :O(2^n) Space complexity :O(1)     
+    public void my_stay(int total1,int total2, ArrayList<String> a , int size, TreeMap<Integer,String> m){  //Time complexity :O(2^n) Space complexity :O(1)     
         if(total2<17 && total2<22){
         	
             int f = dealer_hit(a , size);
             total2=total2+Blackjack_game.check(a.get(f),"stay");
+            Blackjack_game.remove_val(a, f, m);
             
             System.out.println("Now Dealer's total :" +total2);
-            my_stay(total1,total2,a , size);     //recursion until dealer's total exceeds 17...
+            my_stay(total1,total2,a , size,m);     //recursion until dealer's total exceeds 17...
         }
         else{
             dealer_stay(total1,total2,size);     //if dealer's total > 17 ...dealer stay
@@ -41,7 +45,7 @@ class Cards_class implements cards{
 
      // dealer_hit method will randomly generate cards for dealer... 
      public int dealer_hit(ArrayList<String> a , int size){     //Time complexity :O(1) Space complexity :O(1) 
-        int x = new Random().nextInt(0,51);
+        int x = new Random().nextInt(0,size);
         System.out.println();
         System.out.println("Dealer drew :"+a.get(x));
         return x;
@@ -96,7 +100,8 @@ public class Blackjack_game {
     static int amount=0;
 
     // remove the drawn card from arraylist
-    static void remove_val(ArrayList<String> a , int b){
+    static void remove_val(ArrayList<String> a , int b, TreeMap<Integer,String> m){
+            m.put(b,a.get(b));
             a.remove(b);
             size--;
     }
@@ -122,6 +127,8 @@ public class Blackjack_game {
     public static void main(String[] args) {
         
         Scanner sc=new Scanner(System.in);
+        
+        TreeMap<Integer,String> m = new TreeMap<>();
 
         ArrayList<String> a = new ArrayList<>(); //Time complexity :O(1) Space complexity :O(n) 
         
@@ -183,10 +190,12 @@ public class Blackjack_game {
         
         cards c = new Cards_class();
 
+        int option=0;
+        
         System.out.println();
         System.out.println("************WELCOME************");
         System.out.println();
-        
+     do {  
         System.out.print("BIT AMOUNT (RS.10,RS.50,RS.100,RS.500) : ");
         amount = sc.nextInt();
         System.out.println();
@@ -195,12 +204,12 @@ public class Blackjack_game {
          int x=c.my_hit(size);
          int j=check(a.get(x),"hit");
          System.out.print("You have " +a.get(x)+ " and ");
-         remove_val(a,x);
+         remove_val(a,x,m);
          
          int y=c.my_hit(size);
          int k=check(a.get(y),"hit");
          System.out.println(a.get(y));
-         remove_val(a,y);
+         remove_val(a,y,m);
          
          total1=j+k;
 
@@ -215,7 +224,7 @@ public class Blackjack_game {
          System.out.println("His total is hidden ......");
          System.out.println();
 
-          remove_val(a,z);
+          remove_val(a,z,m);
 
          String str="";
 
@@ -233,14 +242,14 @@ public class Blackjack_game {
                     System.out.println("Your total is "+total1);
                     System.out.println();
 
+                    remove_val(a, n,m);
+                    
                     if(total1 >21){
                         System.out.println("YOU BUST :(");
                         System.out.println();
                         System.out.println("************DEALER WON (RS."+Blackjack_game.amount +")************");
                         break;
                     }
-
-                     remove_val(a, n);
                 }
 
         }while(str.equals("hit"));
@@ -248,7 +257,7 @@ public class Blackjack_game {
       
            if(str.equals("stay")){
 
-             int t=new Random().nextInt(0,51);
+             int t=new Random().nextInt(0,size);
 
              System.out.println();
              System.out.println("You choose to stay....");
@@ -259,8 +268,21 @@ public class Blackjack_game {
              total2=total2+(check(a.get(t),"stay"));
 
              System.out.println("Dealer total : " + total2);
+             
+             remove_val(a, t, m);
 
-             c.my_stay(total1,total2,a,size);
+             c.my_stay(total1,total2,a,size,m);
             }
+           
+           System.out.println("\n\n1.PLAY AGAIN \n2.EXIT");
+           option=sc.nextInt();
+           
+           for(Map.Entry<Integer, String> h :  m.entrySet()) {
+        	   a.add(h.getKey(),h.getValue());
+           }
+           m.clear();
+           
+     }while(option==1);
+           
     }
 }

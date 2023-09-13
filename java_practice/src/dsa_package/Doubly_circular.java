@@ -82,6 +82,9 @@ public class Doubly_circular {
 
 		int i = 2;
 
+		if(pos>size()+1) {
+			System.out.println("LIST SIZE IS " +size()+ " CAN'T PERFORM FOR POSITION " +pos);
+		}else {
 		if (head == null) {
 			head = newnode;
 			tail=newnode;
@@ -98,6 +101,7 @@ public class Doubly_circular {
 			temp.next = newnode;
 			newnode.next.prev=newnode;
 		}
+	}
 	}
 
 	void delete_begin() {
@@ -133,6 +137,9 @@ public class Doubly_circular {
 		Doubly_node pre;
 		int i = 1;
 
+		if(pos>size()) {
+			System.out.println("LIST SIZE IS " +size()+ " CAN'T PERFORM FOR POSITION " +pos);
+		}else {
 		if (pos == 1) {
 			delete_begin();
 		} else {
@@ -151,6 +158,44 @@ public class Doubly_circular {
 					temp = null;
 				}
 		}
+	}
+	}
+	
+void delete_element(int val) {
+		
+	    int f=0;
+		temp=head;
+		Doubly_node pre=null;
+		while(temp.next!=head) {
+			if(temp.data == val) {
+				f=1;
+				break;
+			}else {
+			pre=temp;
+			temp=temp.next;
+			}
+		}
+		if(temp.data == val && f==0) {
+			f=1;
+		}		
+		if(f==0) {
+			System.out.println("ELEMENT NOT FOUND TO DELETE");
+		}else if(temp.next==head && temp.equals(head) && temp.next==head) {
+			head=null;
+			tail=null;
+		}else if(temp.equals(head)) {
+			head=temp.next;
+			tail.next=head;
+			head.prev=tail;
+		}else if(temp.next.equals(head)) {
+			tail=pre;
+			pre.next=temp.next;
+			head.prev=tail;
+		}else {
+		pre.next=temp.next;
+		temp.next.prev=pre;
+		}
+		temp=null;
 	}
 	
 	void reverse() {
@@ -213,8 +258,8 @@ public class Doubly_circular {
 			System.out.println(
 					"1.INSERT AT BEGIN \n2.INSERT AT END " 
 			+ "\n3.INSERT AT SPECIFIC POSITION \n4.DELETE AT BEGIN "
-			+ "\n5.DELETE AT END \n6.DELETE AT SPECIFIC POSITION \n7.TRAVERSE \n8.REVERSE \n9.SEARCH" 
-			+ " \n10.EXIT");
+			+ "\n5.DELETE AT END \n6.DELETE AT SPECIFIC POSITION \n7.TRAVERSE \n8.REVERSE \n9.SEARCH "
+			+ "\n10.DELETE ELEMENT \n11.EXIT");
 
 			System.out.print("\nENTER YOUR CHOICE :");
 			choice = sc.nextInt();
@@ -267,10 +312,15 @@ public class Doubly_circular {
 				}
 				break;
 			case 10:
+				System.out.print("\nENTER ELEMENT TO DELETE :");
+				int val4 = sc.nextInt();
+				l.delete_element(val4);
+				break;
+			default:
 				System.out.println("END...");
 				break;
 			}
-		} while (choice < 10);
+		} while (choice < 11 && choice > 0);
 	}
 }
 

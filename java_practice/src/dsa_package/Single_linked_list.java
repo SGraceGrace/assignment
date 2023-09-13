@@ -74,6 +74,9 @@ public class Single_linked_list {
 
 		int i = 2;
 
+		if(pos>size()+1) {
+			System.out.println("LIST SIZE IS " +size()+ " CAN'T PERFORM FOR POSITION " +pos);
+		}else {
 		if (head == null) {
 			head = newnode;
 		} else if (pos == 1) {
@@ -89,6 +92,7 @@ public class Single_linked_list {
 			newnode.next = temp.next;
 			temp.next = newnode;
 		}
+	  }
 	}
 
 	void delete_begin() {
@@ -121,6 +125,9 @@ public class Single_linked_list {
 		Node prev;
 		int i = 1;
 
+		if(pos>size()) {
+			System.out.println("LIST SIZE IS " +size()+ " CAN'T PERFORM FOR POSITION " +pos);
+		}else {
 		if (pos == 1) {
 			delete_begin();
 		} else {
@@ -135,6 +142,30 @@ public class Single_linked_list {
 				prev.next = temp.next;
 				temp = null;
 			}
+		}
+	  }
+	}
+	
+	void delete_element(int val) {
+			
+		temp=head;
+		Node pre=null;
+		while(temp!=null) {
+			if(temp.data == val) {
+				break;
+			}else {
+			pre=temp;
+			temp=temp.next;
+			}
+		}
+		if(temp==null) {
+			System.out.println("ELEMENT NOT FOUND TO DELETE");
+		}
+		else if(temp.equals(head)) {
+			head=temp.next;
+		}else {
+		pre.next=temp.next;
+		temp=null;
 		}
 	}
 	
@@ -172,37 +203,7 @@ public class Single_linked_list {
 		}
 		return -1;
 	}
-	
-//	void swap(int pos1,int pos2) {
-//		Node cur1=head;	
-//		Node cur2=head;
-//		Node pre1=null;
-//		Node pre2=null;
-//		int i=1;
-//		
-//		while(i<pos1) {
-//			pre1=cur1;
-//			cur1=cur1.next;
-//			i++;
-//		}
-//		int j=1;
-//		while(j<pos2) {
-//			pre2=cur2;
-//			cur2=cur2.next;
-//			j++;
-//		}
-//		if(cur1.equals(head)) {
-//			head=cur2;
-//		}
-//		else if(cur2.equals(head)) {
-//			head=cur1;
-//		}
-//		Node temp=cur1.next;
-//		cur1.next=cur2.next;
-//		cur2.next=temp;
-//		pre1=cur2;
-//		pre2=cur1;
-//	}
+
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -225,7 +226,7 @@ public class Single_linked_list {
 					"1.INSERT AT BEGIN \n2.INSERT AT END " 
 			+ "\n3.INSERT AT SPECIFIC POSITION \n4.DELETE AT BEGIN "
 							+ "\n5.DELETE AT END \n6.DELETE AT SPECIFIC POSITION \n7.TRAVERSE \n8.REVERSE \n9.SEARCH" 
-							+ " \n10.EXIT");
+							+ " \n10.DELETE ELEMENT \n11.EXIT");
 
 			System.out.print("\nENTER YOUR CHOICE :");
 			choice = sc.nextInt();
@@ -277,13 +278,15 @@ public class Single_linked_list {
 					System.out.println("ELEMENT NOT FOUND...");
 				}
 				break;
-//			case 10:
-//				l.swap(1, 2);
-//				break;
 			case 10:
+				System.out.print("\nENTER ELEMENT TO DELETE :");
+				int val4 = sc.nextInt();
+				l.delete_element(val4);
+				break;
+			default:
 				System.out.println("END...");
 				break;
 			}
-		} while (choice < 10);
+		} while (choice < 11 && choice > 0);
 	}
 }

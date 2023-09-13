@@ -77,6 +77,9 @@ public class Circular_linked_list {
 
 		int i = 2;
 
+		if(pos>size()+1) {
+			System.out.println("LIST SIZE IS " +size()+ " CAN'T PERFORM FOR POSITION " +pos);
+		}else {
 		if (head == null) {
 			head = newnode;
 			tail=newnode;
@@ -92,6 +95,7 @@ public class Circular_linked_list {
 			newnode.next = temp.next;
 			temp.next = newnode;
 		}
+	}
 	}
 
 	void delete_begin() {
@@ -131,6 +135,9 @@ public class Circular_linked_list {
 		Circular_node prev;
 		int i = 1;
 
+		if(pos>size()) {
+			System.out.println("LIST SIZE IS " +size()+ " CAN'T PERFORM FOR POSITION " +pos);
+		}else {
 		if (pos == 1) {
 			delete_begin();
 		} else {
@@ -149,6 +156,43 @@ public class Circular_linked_list {
 				temp = null;
 			}
 		}
+	}
+	}
+	
+	void delete_element(int val) {
+		
+		int f=0;
+		temp=head;
+		Circular_node pre=null;
+		
+		while(temp.next!=head) {
+			if(temp.data == val) {
+				f=1;
+				break;
+			}else {
+			pre=temp;
+			temp=temp.next;
+			}
+		}
+		if(temp.data == val && f==0) {
+			f=1;
+		}
+		
+		if(f==0) {
+			System.out.println("ELEMENT NOT FOUND TO DELETE");
+		}else if(temp.next.equals(head) && temp.equals(head)) {
+			head=null;
+			tail=null;
+		}else if(temp.next.equals(head)) {
+			tail=pre;
+			pre.next=temp.next;
+		}else if(temp.equals(head)) {
+			head=temp.next;
+			tail.next=head;
+		}else {
+		pre.next=temp.next;
+		}
+		temp=null;
 	}
 	
 	void reverse() {
@@ -216,7 +260,7 @@ public class Circular_linked_list {
 					"1.INSERT AT BEGIN \n2.INSERT AT END " 
 			+ "\n3.INSERT AT SPECIFIC POSITION \n4.DELETE AT BEGIN "
 			+ "\n5.DELETE AT END \n6.DELETE AT SPECIFIC POSITION \n7.TRAVERSE \n8.REVERSE \n9.SEARCH" 
-			+ " \n10.EXIT");
+			+ " \n10.DELETE ELEMENT \n11.EXIT");
 
 			System.out.print("\nENTER YOUR CHOICE :");
 			choice = sc.nextInt();
@@ -269,10 +313,15 @@ public class Circular_linked_list {
 				}
 				break;
 			case 10:
+				System.out.print("\nENTER ELEMENT TO DELETE :");
+				int val4 = sc.nextInt();
+				l.delete_element(val4);
+				break;
+			default:
 				System.out.println("END...");
 				break;
 			}
-		} while (choice < 10);
+		} while (choice < 11 && choice > 0);
 	}
 }
 

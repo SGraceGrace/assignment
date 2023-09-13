@@ -172,6 +172,37 @@ public class Single_linked_list {
 		}
 		return -1;
 	}
+	
+//	void swap(int pos1,int pos2) {
+//		Node cur1=head;	
+//		Node cur2=head;
+//		Node pre1=null;
+//		Node pre2=null;
+//		int i=1;
+//		
+//		while(i<pos1) {
+//			pre1=cur1;
+//			cur1=cur1.next;
+//			i++;
+//		}
+//		int j=1;
+//		while(j<pos2) {
+//			pre2=cur2;
+//			cur2=cur2.next;
+//			j++;
+//		}
+//		if(cur1.equals(head)) {
+//			head=cur2;
+//		}
+//		else if(cur2.equals(head)) {
+//			head=cur1;
+//		}
+//		Node temp=cur1.next;
+//		cur1.next=cur2.next;
+//		cur2.next=temp;
+//		pre1=cur2;
+//		pre2=cur1;
+//	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -246,6 +277,9 @@ public class Single_linked_list {
 					System.out.println("ELEMENT NOT FOUND...");
 				}
 				break;
+//			case 10:
+//				l.swap(1, 2);
+//				break;
 			case 10:
 				System.out.println("END...");
 				break;

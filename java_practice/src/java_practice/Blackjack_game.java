@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+//Time complexity :O(2^n) Space complexity :O(n) 
 
 interface cards{
     int  my_hit(int size);
@@ -16,7 +17,7 @@ interface cards{
 class Cards_class implements cards{
 
     // my_hit method performs when player choose to hit ...this method randomly generate card for player...
-    public int my_hit(int size){                  
+    public int my_hit(int size){    //Time complexity :O(1) Space complexity :O(1)              
       int x = new Random().nextInt(0,size);
       return x;
      }
@@ -24,7 +25,7 @@ class Cards_class implements cards{
    /*  my_stay method performs when player choose to stay ...after player give stay......it's dealer's turn .....
        checks dealer's total , if <17 dealer will hit ...if dealer's total >21 dealer bust....*/
     
-    public void my_stay(int total1,int total2, ArrayList<String> a , int size){      
+    public void my_stay(int total1,int total2, ArrayList<String> a , int size){  //Time complexity :O(2^n) Space complexity :O(1)     
         if(total2<17 && total2<22){
         	
             int f = dealer_hit(a , size);
@@ -39,7 +40,7 @@ class Cards_class implements cards{
      }
 
      // dealer_hit method will randomly generate cards for dealer... 
-     public int dealer_hit(ArrayList<String> a , int size){     
+     public int dealer_hit(ArrayList<String> a , int size){     //Time complexity :O(1) Space complexity :O(1) 
         int x = new Random().nextInt(0,51);
         System.out.println();
         System.out.println("Dealer drew :"+a.get(x));
@@ -47,7 +48,7 @@ class Cards_class implements cards{
      }
 
     // dealer_stay method checks dealer's total exceeds 21...if exceeds dealer bust
-     public void dealer_stay(int total1,int total2 , int size){
+     public void dealer_stay(int total1,int total2 , int size){  //Time complexity :O(1) Space complexity :O(1) 
             if(total2 >21){
                 System.out.println();
                 System.out.println("DEALER BUST");
@@ -62,7 +63,7 @@ class Cards_class implements cards{
      }
 
      // result method will compare player's total and dealer's total ....the higher will win the match..
-     public void result(int total1,int total2){
+     public void result(int total1,int total2){  //Time complexity :O(1) Space complexity :O(1) 
         if(total1>total2){
         System.out.println();
         System.out.println("Your total : "+total1);
@@ -122,7 +123,7 @@ public class Blackjack_game {
         
         Scanner sc=new Scanner(System.in);
 
-        ArrayList<String> a = new ArrayList<>();
+        ArrayList<String> a = new ArrayList<>(); //Time complexity :O(1) Space complexity :O(n) 
         
         a.add("Spade ACE");
         a.add("Spade 2");
@@ -218,7 +219,7 @@ public class Blackjack_game {
 
          String str="";
 
-        do{
+        do{  //Time complexity :O(n) Space complexity :O(1) 
              System.out.println("hit or stay ?");
              str = sc.next();
 

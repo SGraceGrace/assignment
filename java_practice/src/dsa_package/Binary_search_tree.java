@@ -166,6 +166,16 @@ public class Binary_search_tree {
 		}
 		return tree.data;
 	}
+	
+	int height(Binary_tree_node tree) {
+		
+		if(tree == null) {
+			return 0;
+		}
+			int rheight = height(tree.rchild);
+			int lheight = height(tree.lchild);
+		return rheight>lheight ? rheight+1:lheight+1;
+	}
 
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
@@ -176,7 +186,7 @@ public class Binary_search_tree {
 		do {
 			
 			System.out.println("\n1.INSERT \n2.INORDER \n3.PREORDER \n4.POSTORDER "
-					+ "\n5.LEVELORDER \n6.SEARCH \n7.DELETION \n8.MINIMUM ELEMENT \n9.MAXIMUM ELEMENT \n10.EXIT");
+					+ "\n5.LEVELORDER \n6.SEARCH \n7.DELETION \n8.MINIMUM ELEMENT \n9.MAXIMUM ELEMENT \n10.HEIGHT \n11.EXIT");
 			
 			choice=sc.nextInt();
 			
@@ -267,10 +277,14 @@ public class Binary_search_tree {
 					System.out.println("MAXIMUM ELEMENT IS :" +(b.find_max(root)));
 				break;
 				
+			case 10 :
+				System.out.println( b.height(root));
+				break;
+				
 			default :
 					System.out.println("END....");
 			}
-		}while(choice <10 && choice>0);
+		}while(choice <11 && choice>0);
 	}
 
 }

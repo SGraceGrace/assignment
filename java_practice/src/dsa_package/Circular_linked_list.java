@@ -113,7 +113,7 @@ public class Circular_linked_list {
 
 	void delete_last() {
 		Circular_node prev;
-		if(head.next==head) {
+		if(head.equals(tail)) {
 			head=null;
 			tail=null;
 		}

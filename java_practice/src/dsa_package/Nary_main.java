@@ -59,22 +59,30 @@ public class Nary_main {
 			}
 	}
 	
-	void dfs_traversal() {
+void dfs_traversal() {
 		
-		Stack<N_Node> s = new Stack<>();
+		LinkedList<N_Node> l = new LinkedList<>();
 		
-		s.push(root);
+		l.addFirst(root);
 		
-		while(!s.isEmpty()) {
-			
-			N_Node temp = s.pop();	
-			LinkedList<N_Node> l =new LinkedList<>();
-			System.out.print(temp.data+" ");
-			l.addAll(temp.children);
-			Collections.reverse(l);
-			s.addAll(l);	
-			l.clear();
-			}
+		while(l.size()>0){
+		    
+		    N_Node temp = l.pollFirst();
+		    
+		    System.out.print(temp.data +" ");
+		    
+		    if(temp.children.size()>0){
+		        
+		        Stack<N_Node> s = new Stack<>();
+		        
+		        for(int i=0;i<temp.children.size();i++){
+		            s.add(temp.children.get(i));
+		        }
+		        while(!s.isEmpty()){
+		             l.addFirst(s.pop());
+		        }
+		    }
+		}
 	}
 	
 	void find_height() {

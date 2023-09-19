@@ -102,59 +102,68 @@ void find_height() {
 	System.out.print("HEIGHT :"+count);
 }
 	
-	boolean delete(int val) {
-        if (root.data == val) {
-            if (root.children.isEmpty()) {
-                root = null;
-            } else {
-                N_Node temp = root.children.get(0);
-                root.children.remove(0);
-                if (root.children.isEmpty()) {
-                    root = temp;
-                    return true;
-                }
-
-                temp.children.addAll(root.children);
-                root = temp;
-            }
-            return true;
-
-        } else {
-            Queue<N_Node> q = new LinkedList<>();
-
-            q.add(root);
-
-            while (!q.isEmpty()) {
-            	N_Node temp = q.poll();
-                boolean contain = false;
-                int Position = -1;
-                for (int i = 0; i < temp.children.size(); i++) {
-                    if (temp.children.get(i).data == val) {
-                        contain = true;
-                        Position = i;
-                        break;
-                    }
-                }
-
-                if (contain && temp.children.get(Position).children.isEmpty()){
-                    temp.children.remove(Position);
-                    return true;
-                }
-
-                if (contain) {
-                	N_Node tempNode = temp.children.get(Position);
-                    temp.children.add(tempNode.children.get(0));
-                    tempNode.children.remove(0);
-                    temp.children.get(temp.children.size()-1).children.addAll(tempNode.children);
-                    temp.children.remove(Position);
-                    return true;
-                }
-
-                q.addAll(temp.children);
+int delete(int val){
+	
+	int flag=0;
+    
+    if(root.data == val){
+    	flag=1;
+        
+        N_Node target = root;
+    
+    if(target.children.size() ==0){
+        root = null;
+    }else if(target.children.size()>0){
+        N_Node replace_value = target.children.get(0);
+        target.children.remove(0);
+        replace_value.children.addAll(target.children);
+        root = replace_value;
+    }
+    }else{
+    
+    Queue<N_Node> q = new LinkedList<>();
+    
+    q.add(root);
+    
+    int index=-1;
+    
+     N_Node temp=null;
+    
+    while(!q.isEmpty()){
+        
+        temp = q.poll();
+        
+        
+        for(int i=0;i<temp.children.size();i++){
+            if(temp.children.get(i).data == val){
+                index=i;
+                flag=1;
+                break;
             }
         }
-        return false;
+        if(flag == 1){
+            break;
+        }else{
+            q.addAll(temp.children);
+        }
     }
+    
+    N_Node target = temp.children.get(index);
+    
+    if(target.children.size() ==0){
+        temp.children.remove(index);
+    }else if(target.children.size()>0 && temp.children.size()==1){
+        temp.children.addAll(target.children);
+        temp.children.remove(index);
+    }else if(target.children.size()>0 && temp.children.size()>1){
+        N_Node replace_value = target.children.get(0);
+        target.children.remove(0);
+        replace_value.children.addAll(target.children);
+        temp.children.set(index , replace_value);
+    }
+  }
+    return flag;
+}
 	
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
@@ -214,9 +223,11 @@ void find_height() {
 				System.out.print("\nENTER ELEMENT TO DELETE :");
 				int val1 = sc.nextInt();
 		
-				 if(n.delete(val1)) {
+				 if(n.delete(val1) ==1) {
     	         System.out.println("DELETED");
-               }	
+               }else {
+            	   System.out.println("ELEMENT NOT FOUND");
+               }
 			}
 				break;
 			

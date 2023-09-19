@@ -1,8 +1,11 @@
 package dsa_package;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
 
 class N_Node{
 	int data;
@@ -47,6 +50,24 @@ public class Nary_main {
 			System.out.print(temp.data+" ");
 			q.addAll(temp.children);
 			
+			}
+	}
+	
+	void dfs_traversal() {
+		
+		Stack<N_Node> s = new Stack<>();
+		
+		s.push(root);
+		
+		while(!s.isEmpty()) {
+			
+			N_Node temp = s.pop();	
+			LinkedList<N_Node> l =new LinkedList<>();
+			System.out.print(temp.data+" ");
+			l.addAll(temp.children);
+			Collections.reverse(l);
+			s.addAll(l);	
+			l.clear();
 			}
 	}
 	
@@ -129,8 +150,10 @@ public class Nary_main {
     }
 	
 	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
 		
 		Nary_main n = new Nary_main();
+		    
 		
 			N_Node newnode = new N_Node();
 			newnode.data = 10;
@@ -147,6 +170,9 @@ public class Nary_main {
 			n.insert(1, 10);
 		
 		    n.bfs_traversal(root);
+		    System.out.println();
+		    n.dfs_traversal();
+		    
 		    n.find_height(root);
 		    if(n.delete(2)) {
 		    	System.out.println("DELETED");

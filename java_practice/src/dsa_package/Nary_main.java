@@ -85,29 +85,30 @@ void dfs_traversal() {
 		}
 	}
 	
-	void find_height() {
-		
-		 Queue<N_Node> q = new LinkedList<>();
-		 
-		 q.add(root);
-		 q.add(null);
-		 
-		 int count=0;
-		 		 
-		 while(!q.isEmpty()) {
-				
-				N_Node temp = q.poll();
-
-				if(temp == null) {
-					count++;
-					if(!q.isEmpty())
-					q.add(null);
-				}else {
-				   q.addAll(temp.children);
-				}
-			}
-		 System.out.println("height :" +count);
+void find_height() {
+    
+    int count=0;
+	
+	Queue<N_Node> q = new LinkedList<>();
+	Queue<N_Node> sub = new LinkedList<>();
+	
+	q.add(root);
+	
+	while(!q.isEmpty()){
+	    
+	    N_Node temp = q.poll();
+	    
+	    if(temp.children.size() >0){
+	        sub.addAll(temp.children);
+	    }
+	    if(q.size() ==0){
+	        count++;
+	        q.addAll(sub);
+	        sub.clear();
+	    }
 	}
+	System.out.print("HEIGHT :"+count);
+}
 	
 	boolean delete(int val) {
         if (root.data == val) {

@@ -18,6 +18,8 @@ public class Nary_main {
 	
 	void insert(int data , int node) {
 		
+		int f=0;
+		
 		Queue<N_Node> q = new LinkedList<>();
 		
 		q.add(root);
@@ -31,14 +33,18 @@ public class Nary_main {
 		N_Node temp = q.poll();
 		
 		if(temp.data == node) {
+			f=1;
 			temp.children.add(newnode);
 		}else {
 			q.addAll(temp.children);
 		}
 	  }
+	   if(f==0) {
+		   System.out.println("NO SUCH NODE EXIST");
+	   }
 	}
 	
-	void bfs_traversal(N_Node tree) {
+	void bfs_traversal() {
 		
         Queue<N_Node> q = new LinkedList<>();
 		
@@ -71,7 +77,7 @@ public class Nary_main {
 			}
 	}
 	
-	void find_height(N_Node tree) {
+	void find_height() {
 		
 		 Queue<N_Node> q = new LinkedList<>();
 		 
@@ -154,29 +160,73 @@ public class Nary_main {
 		
 		Nary_main n = new Nary_main();
 		    
+		int choice ;
 		
-			N_Node newnode = new N_Node();
-			newnode.data = 10;
-			root = newnode;
-			root.children = new ArrayList<>();
+             do {
+			
+			System.out.println("\n1.INSERT \n2.BFS \n3.DFS \n4.DELETE \n5.HEIGHT \n6.EXIT");
+			
+			choice=sc.nextInt();
+			
+			switch(choice) {
+			
+			case 1:
+				System.out.print("ENTER ELEMENT TO INSERT :");
+				int ele = sc.nextInt();
+				
+				if(root == null) {
+					N_Node newnode = new N_Node();
+		          newnode.data = ele;
+		          root = newnode;
+		          root.children = new ArrayList<>();
+				}else {
+                  System.out.print("ENTER NODE :");
+		            int node = sc.nextInt();
+					n.insert(ele, node);
+				}
+				break;
+				
+			case 2:
+				if (root == null) {
+					System.out.println("TREE IS NULL");
+				} else {
+				System.out.print("BFS : ");
+				n.bfs_traversal();
+				}
+				break;
+				
+			case 3:
+				if (root == null) {
+					System.out.println("TREE IS NULL");
+				} else {
+				System.out.print("\nDFS : ");
+				n.dfs_traversal();
+				}
+				break;
 
-			n.insert(2, 10);
-			n.insert(3, 10);
-			n.insert(4, 10);
-			n.insert(5, 10);
-			n.insert(6, 2);
-			n.insert(7, 3);
-			n.insert(9, 10);
-			n.insert(1, 10);
+			case 4 :
+				
+				if (root == null) {
+					System.out.println("TREE IS NULL");
+				} else {
+					
+				System.out.print("\nENTER ELEMENT TO DELETE :");
+				int val1 = sc.nextInt();
 		
-		    n.bfs_traversal(root);
-		    System.out.println();
-		    n.dfs_traversal();
-		    
-		    n.find_height(root);
-		    if(n.delete(2)) {
-		    	System.out.println("DELETED");
-		    }
-		    n.bfs_traversal(root);
+				 if(n.delete(val1)) {
+    	         System.out.println("DELETED");
+               }	
+			}
+				break;
+			
+			case 5 :
+				n.find_height();
+				break;
+				
+			default :
+					System.out.println("END....");
+			}
+		}while(choice <6 && choice>0);
+
 	}
 }

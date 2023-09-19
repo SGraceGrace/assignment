@@ -61,25 +61,17 @@ public class Nary_main {
 	
 void dfs_traversal() {
 		
-		LinkedList<N_Node> l = new LinkedList<>();
-		
-		l.addFirst(root);
-		
-		while(l.size()>0){
+		LinkedList<N_Node> l = new LinkedList<>();		
+		l.addFirst(root);	
+		while(l.size()>0){	
+			
+		    N_Node temp = l.pollFirst();	
 		    
-		    N_Node temp = l.pollFirst();
+		    System.out.print(temp.data +" ");	
 		    
-		    System.out.print(temp.data +" ");
-		    
-		    if(temp.children.size()>0){
-		        
-		        Stack<N_Node> s = new Stack<>();
-		        
-		        for(int i=0;i<temp.children.size();i++){
-		            s.add(temp.children.get(i));
-		        }
-		        while(!s.isEmpty()){
-		             l.addFirst(s.pop());
+		    if(temp.children.size()>0) {		        
+		        for(int i=temp.children.size()-1;i>=0;i--){
+		             l.addFirst(temp.children.get(i));
 		        }
 		    }
 		}

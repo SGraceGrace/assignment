@@ -63,7 +63,9 @@ public class Nary_main {
      / |  \  
      2 3   5
     /\ /  /\ \
-   1 6 7  8 4 9     */
+   1 6 7  8 4 9  
+      /
+     11            */
 	
 void dfs_traversal() { 
 		
@@ -87,7 +89,9 @@ void dfs_traversal() {
      / | \  
      2 3   5
     /\ /  /\ \
-   1 6 7  8 4 9     */
+   1 6 7  8 4 9 
+      /
+     11             */
 
  void find_height() { 
     

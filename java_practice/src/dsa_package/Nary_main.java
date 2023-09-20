@@ -16,7 +16,7 @@ public class Nary_main {
 
 	static N_Node root =null;
 	
-	void insert(int data , int node) {
+	void insert(int data , int node) {              
 		
 		int f=0;
 		
@@ -59,15 +59,21 @@ public class Nary_main {
 			}
 	}
 	
-void dfs_traversal() {
+/*     10
+     / |  \  
+     2 3   5
+    /\ /  /\ \
+   1 6 7  8 4 9     */
+	
+void dfs_traversal() { 
 		
-		LinkedList<N_Node> l = new LinkedList<>();		
+		LinkedList<N_Node> l = new LinkedList<>();		          
 		l.addFirst(root);	
 		while(l.size()>0){	
 			
 		    N_Node temp = l.pollFirst();	
 		    
-		    System.out.print(temp.data +" ");	
+		    System.out.print(temp.data +" ");	//10,2,1,6,3,7,5,8,4,9
 		    
 		    if(temp.children.size()>0) {		        
 		        for(int i=temp.children.size()-1;i>=0;i--){
@@ -77,7 +83,13 @@ void dfs_traversal() {
 		}
 	}
 	
-void find_height() {
+/*     10
+     / | \  
+     2 3   5
+    /\ /  /\ \
+   1 6 7  8 4 9     */
+
+ void find_height() { 
     
     int count=0;
 	
@@ -114,28 +126,31 @@ int delete(int val){
     if(target.children.size() ==0){
         root = null;
     }else if(target.children.size()>0){
-        N_Node replace_value = target.children.get(0);
+        N_Node replace_node = target.children.get(0);
         target.children.remove(0);
-        replace_value.children.addAll(target.children);
-        root = replace_value;
+        replace_node.children.addAll(target.children);
+        root = replace_node;
     }
     }else{
-    
-    Queue<N_Node> q = new LinkedList<>();
-    
+    	
+  /*      10
+        / | \  
+        2 3   5
+       /\ /  /\ \
+      1 6 7  8 4 9
+         / 
+        11                */   
+    Queue<N_Node> q = new LinkedList<>();   
     q.add(root);
     
-    int index=-1;
+    int index=-1;   
+     N_Node parent=null;
     
-     N_Node temp=null;
-    
-    while(!q.isEmpty()){
+    while(!q.isEmpty()){      
+        parent = q.poll();
         
-        temp = q.poll();
-        
-        
-        for(int i=0;i<temp.children.size();i++){
-            if(temp.children.get(i).data == val){
+        for(int i=0;i<parent.children.size();i++){
+            if(parent.children.get(i).data == val){
                 index=i;
                 flag=1;
                 break;
@@ -144,22 +159,23 @@ int delete(int val){
         if(flag == 1){
             break;
         }else{
-            q.addAll(temp.children);
+            q.addAll(parent.children);
         }
     }
-    
-    N_Node target = temp.children.get(index);
+    if(flag == 1) {
+    N_Node target = parent.children.get(index);
     
     if(target.children.size() ==0){
-        temp.children.remove(index);
-    }else if(target.children.size()>0 && temp.children.size()==1){
-        temp.children.addAll(target.children);
-        temp.children.remove(index);
-    }else if(target.children.size()>0 && temp.children.size()>1){
-        N_Node replace_value = target.children.get(0);
+        parent.children.remove(index);
+    }else if(target.children.size()>0 && parent.children.size()==1){
+        parent.children.addAll(target.children);
+        parent.children.remove(index);
+    }else if(target.children.size()>0 && parent.children.size()>1){
+        N_Node replace_node = target.children.get(0);
         target.children.remove(0);
-        replace_value.children.addAll(target.children);
-        temp.children.set(index , replace_value);
+        replace_node.children.addAll(target.children);
+        parent.children.set(index , replace_node);
+    }
     }
   }
     return flag;

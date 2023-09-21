@@ -6,68 +6,68 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
-class Directed_graph{
+class Undirected_graph{
 	int data;
-	ArrayList<Directed_graph> nextNodes;
+	ArrayList<Undirected_graph> adjacentNodes;
 }
 
-
-public class Graph_Main1 {
-
-	ArrayList<Directed_graph> nodes = new ArrayList<>();
+public class Graph_Main2 {
 	
+	ArrayList<Undirected_graph> nodes = new ArrayList<>();
+
 	void create_node(int data) {
-		
-		Directed_graph newnode = new Directed_graph();
+		Undirected_graph newnode = new Undirected_graph();
 		newnode.data = data;
-		newnode.nextNodes = new ArrayList<>();
-		
+		newnode.adjacentNodes =  new ArrayList<>();
 		nodes.add(newnode);
 	}
 	
-	void create_edges(int src , int dest) {
+	void create_edge(int src , int dest) {
 		
-		Directed_graph source =null;
-		Directed_graph destination =null;
+		Undirected_graph source_node = null;
+		Undirected_graph dest_node = null;
 		
 		for(int i=0;i<nodes.size();i++) {
+			
 			if(nodes.get(i).data == src) {
-				source = nodes.get(i);
+				source_node = nodes.get(i);
 			}
 			if(nodes.get(i).data == dest) {
-				destination = nodes.get(i);
+				dest_node = nodes.get(i);
 			}
 		}
 		
-		if(source != null && destination != null) {
-			source.nextNodes.add(destination);
+		if(source_node != null && dest_node != null) {
+			source_node.adjacentNodes.add(dest_node);
+			dest_node.adjacentNodes.add(source_node);
+			
 		}else {
-			System.out.println("NODE IS NOT PRESENT");
+			System.out.println("NO SUCH NODE FOUND");
 		}
 	}
 	
 	void print() {
 		for(int i=0;i<nodes.size();i++) {
 			
-			Directed_graph node = nodes.get(i);
+			Undirected_graph node = nodes.get(i);
 			
 			System.out.print("\nNODE : " +node.data);
 			
-			if(node.nextNodes.size()>0) {
+			if(node.adjacentNodes.size()>0) {
 				
 			System.out.print("-->(");
-			
+				
 			int j=0;
 			
-			for(j=0;j<node.nextNodes.size()-1;j++) {			
-				System.out.print(node.nextNodes.get(j).data +",");
+			for(j=0;j<node.adjacentNodes.size()-1;j++) {			
+				System.out.print(node.adjacentNodes.get(j).data +",");
 			}
-			System.out.print(node.nextNodes.get(j).data +")");
+			System.out.print(node.adjacentNodes.get(j).data +")");
 		}
 	}
 }
 	
-	void bfs(int start) {
+void bfs(int start) {
 		
 		int index =-1;
 		
@@ -80,20 +80,20 @@ public class Graph_Main1 {
 		
 		if(index != -1) {
 			
-		ArrayList<Directed_graph> visited = new ArrayList<>();
+		ArrayList<Undirected_graph> visited = new ArrayList<>();
 		
-		Queue<Directed_graph> q = new LinkedList<>();
+		Queue<Undirected_graph> q = new LinkedList<>();
 		
 		q.add(nodes.get(index));
 		
 		while(!q.isEmpty()){
 			
-			Directed_graph node = q.poll();
+			Undirected_graph node = q.poll();
 			
 			if(!visited.contains(node)) {
 				
-			if(node.nextNodes.size()>0) {
-				q.addAll(node.nextNodes);
+			if(node.adjacentNodes.size()>0) {
+				q.addAll(node.adjacentNodes);
 			}
 			System.out.print(node.data+" ");
 			visited.add(node);
@@ -117,22 +117,22 @@ void dfs(int start) {
 		
 		if(index != -1) {
 			
-		ArrayList<Directed_graph> visited = new ArrayList<>();
+		ArrayList<Undirected_graph> visited = new ArrayList<>();
 		
-		Stack<Directed_graph> s = new Stack<>();
+		Stack<Undirected_graph> s = new Stack<>();
 		
 		s.add(nodes.get(index));
 		
 		while(!s.isEmpty()){
 			
-			Directed_graph node = s.pop();
+			Undirected_graph node = s.pop();
 			
 			if(!visited.contains(node)) {
 				
-			if(node.nextNodes.size()>0) {				
-				for(int i=0;i<node.nextNodes.size();i++) {
-					if(!visited.contains(node.nextNodes.get(i))) {
-						s.push(node.nextNodes.get(i));
+			if(node.adjacentNodes.size()>0) {				
+				for(int i=0;i<node.adjacentNodes.size();i++) {
+					if(!visited.contains(node.adjacentNodes.get(i))) {
+						s.push(node.adjacentNodes.get(i));
 					}
 				}
 			}
@@ -144,13 +144,13 @@ void dfs(int start) {
 		System.out.println("NO SUCH NODE PRESENT");
 	}
 }
-	
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		Graph_Main1 g = new Graph_Main1();
+		Graph_Main2 g = new Graph_Main2();
 		
-		int choice;
+         int choice;
 		
 		do {			
 			
@@ -170,7 +170,7 @@ void dfs(int start) {
 				int src = sc.nextInt();
 				System.out.print("ENTER DESTINATION NODE:");
 				int dest = sc.nextInt();
-				g.create_edges(src,dest);
+				g.create_edge(src,dest);
 				break;
 				
 			case 3:
@@ -195,6 +195,31 @@ void dfs(int start) {
 				System.out.println("END......");
 				
 			}
-		}while(choice<6 && choice>0);		
-	}
+		}while(choice<6 && choice>0);	
+//		g.create_node(2);
+//		g.create_node(4);
+//		g.create_node(6);
+//		g.create_node(8);
+//		g.create_node(3);
+//		g.create_node(1);
+//		
+//		g.create_edge(2, 4);
+//		g.create_edge(2, 8);
+//		g.create_edge(2, 3);
+//		g.create_edge(3, 1);
+//		g.create_edge(3, 8);
+//		g.create_edge(4, 6);
+//		g.create_edge(4, 3);
+//		g.create_edge(1, 4);
+//		g.create_edge(6, 1);
+//		
+//		g.print();
+//		
+//		System.out.println();
+//		System.out.print("BFS : ");
+//		g.bfs(6);
+//		System.out.println();
+//		System.out.print("DFS : ");
+//		g.dfs(8);
+		}
 }

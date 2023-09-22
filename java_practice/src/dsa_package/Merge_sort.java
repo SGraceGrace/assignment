@@ -1,6 +1,7 @@
 package dsa_package;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Merge_sort {
 
@@ -34,11 +35,25 @@ public class Merge_sort {
 	}
 }
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
 		
-		int arr[]=new int[] {6,20,4,9,100,1,10,8,50,2,5};
+		System.out.print("ENTER SIZE OF ARRAY :");
+		int n = sc.nextInt();
+		
+		int arr[]=new int[n]; 
+		for(int i=0;i<n;i++) {
+			System.out.print("\nENTER ELEMENT " +i+ ":");
+			arr[i]=sc.nextInt();
+		}
+		
+		System.out.print("ORIGINAL ARRAY :");
+		for(int i=0;i<arr.length;i++) {
+			System.out.print(arr[i]+" ");
+		}
 		
 		mergesort(arr,0,arr.length-1);
 		
+		System.out.print("\n\nMERGE SORT : ");
 		for(int i=0;i<arr.length;i++) {
 			System.out.print(arr[i]+" ");
 		}

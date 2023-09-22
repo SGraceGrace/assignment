@@ -21,13 +21,12 @@ public class Cocktail_sort {
 				System.out.print(arr[i]+" ");
 			}
 			
-			int start = -1;
+			int start = 0;
 			int end =arr.length-1;
 			
+			int ccount=0;
+			
 			for(int i=0;i<arr.length;i++) {
-				
-				start=start+1;
-				
 						
 				for(int j=start;j<end;j++) {
 					if(arr[j]>arr[j+1]) {
@@ -35,6 +34,7 @@ public class Cocktail_sort {
 						arr[j]=arr[j+1];
 						arr[j+1]=temp;
 					}
+					ccount++;
 				}
 				
 				for(int k=end;k>start;k--) {
@@ -43,15 +43,18 @@ public class Cocktail_sort {
 						arr[k]=arr[k-1];
 						arr[k-1]=temp;
 					}
+					ccount++;
 				}
 				
+				start=start+1;
 				end=end-1;
 				
 			}
 			
-			System.out.print("\n\nSORTED ARRAY :");
+			System.out.print("\n\nCOCKTAIL SORTED ARRAY :");
 			for(int i=0;i<arr.length;i++) {
 				System.out.print(arr[i]+" ");
 			}
+			System.out.print("\n"+ ccount);
 		}
 	}

@@ -22,6 +22,7 @@ package dsa_package;
 				System.out.print(arr[i]+" ");
 			}
 			
+			int bcount=0;
 			for(int i=0;i<arr.length;i++) {
 				for(int j=0;j<arr.length-1;j++) {
 					if(arr[j]>arr[j+1]) {
@@ -29,12 +30,14 @@ package dsa_package;
 						arr[j]=arr[j+1];
 						arr[j+1]=temp;
 					}
+					bcount++;
 				}
 			}
 			
-			System.out.print("\n\nSORTED ARRAY :");
+			System.out.print("\n\nBUBBLE SORTED ARRAY :");
 			for(int i=0;i<arr.length;i++) {
 				System.out.print(arr[i]+" ");
 			}
+			System.out.print("\n"+ bcount);
 		}
 	}

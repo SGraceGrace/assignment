@@ -11,9 +11,23 @@ public class Merge_sort {
 		
 		int mid = (low+high)/2;
 		
+//		System.out.println();
+//		for(int i=low;i<=mid;i++) {
+//			System.out.print(arr[i]+" ");
+//		}
+//		System.out.print("| ");
+//		for(int i=mid+1;i<=high;i++) {
+//			System.out.print(arr[i]+" ");
+//		}
+		
 		mergesort(arr,low,mid);
 		mergesort(arr,mid+1,high);
 		merge(arr,low,mid,high);
+		
+//		System.out.print("\nsorted :");
+//		for(int k=low;k<=high;k++) {
+//			System.out.print(arr[k]+" ");
+//		}
 		}
 	}
 	static void merge(int arr[],int low,int mid,int high) {

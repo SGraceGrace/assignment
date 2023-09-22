@@ -1,5 +1,3 @@
-package practice;
-
 class Constructor_example {
      
      //constructor overloading

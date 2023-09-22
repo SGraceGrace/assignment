@@ -20,7 +20,7 @@ if(n>1){
         BigInteger a=BigInteger.valueOf(0);
         BigInteger b=BigInteger.valueOf(1);
 
-        Fiborecur fr=new Fiborecur();
+        Fiboreverse fr=new Fiboreverse();
         fr.fibo(a,b,n);
         for(int i=fr.ls.size()-1;i>=0;i--){
         System.out.print(fr.ls.get(i)+" ");

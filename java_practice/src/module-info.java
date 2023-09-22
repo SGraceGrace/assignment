@@ -4,5 +4,5 @@
 /**
  * 
  */
-module java_practice {
+module practice {
 }

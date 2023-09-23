@@ -6,7 +6,7 @@ public class Collatz_sequence {
 		long max = 0;
 		long value = 0;
 
-		while (n > 0) {
+		while (n > 1) {
 			long count = 1;
 			long i = n;
 			while (i > 1) {

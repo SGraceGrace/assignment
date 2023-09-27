@@ -1,0 +1,16 @@
+create database Book_store;
+use Book_store;
+show tables;
+create table author (Author_name varchar(20), Address varchar(20), url varchar(30),primary key(Author_name,Address));
+drop table author;
+create table publisher (Name varchar(20) primary key,Address varchar(20),Phone int,url varchar(30));
+create table customer ( Name varchar(20),Address varchar(20),Email varchar(20) primary key,Phone int);
+alter table customer add column cust_id int auto_increment unique;
+alter table customer auto_increment=100;
+create table book( Title varchar(10),Author_name varchar(20),Publiser_name varchar(20),Year int,Price int,ISBN int primary key,foreign key (Author_name) references author(Author_name),foreign key (Publiser_name) references publisher(Name));
+drop table book;
+drop table shopping_basket;
+drop table warehouse;
+create table shopping_basket(Basket_id int auto_increment primary key,ISBN int,cust_id int,foreign key(ISBN) references book(ISBN),foreign key (cust_id) references customer(cust_id));
+alter table shopping_basket auto_increment=100;
+create table warehouse(Code int primary key,ISBN int,Address varchar(30),phone_no int,foreign key(ISBN) references book(ISBN));

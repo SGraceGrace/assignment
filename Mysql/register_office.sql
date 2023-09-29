@@ -30,10 +30,8 @@ create table instructor (Instructor_id varchar(10) primary key,
                          First_name varchar(10),
                          Last_name varchar(10),
                          Title varchar(10),
-                         Course_no varchar(10) ,
                          Email varchar(20),
-                         Department varchar(10),
-                         FOREIGN KEY (Course_no) references course(Course_no));
+                         Department varchar(10));
 describe student;
 create table course_enrollment (Enrollment_id int primary key auto_increment,
 							    Course_no varchar(10),

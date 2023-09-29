@@ -25,6 +25,7 @@ create table student (Stud_id varchar(10) primary key,
                       Department varchar(10),
                       Email varchar(20),
                       Year int);
+drop table instructor;
 create table instructor (Instructor_id varchar(10) primary key,
                          First_name varchar(10),
                          Last_name varchar(10),

@@ -45,7 +45,8 @@ create table shopping_basket(basketID varchar(10) primary key,
                              email varchar(20),
                              product_count int,
                              price int,
-                             foreign key(stock_id) references stocks(stock_id));
+                             foreign key(stock_id) references stocks(stock_id),
+                             foreign key(email) references customer(email));
                              
  create table customer_order(order_id varchar(10) primary key,
                     basketID varchar(10),
@@ -63,5 +64,9 @@ create table tracking(tracking_id varchar(10) primary key,
                       deliver_status varchar(30),
                       delivered_date date,
                       foreign key(order_id) references customer_order(order_id));
+ 
+drop table tracking;
+drop table customer_order;
+drop table shopping_basket;
 
                       

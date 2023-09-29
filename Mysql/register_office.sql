@@ -8,15 +8,16 @@ create table course (Course_no varchar(10) primary key,
 select * from course;
 describe course;
 create table course_offerings (Course_no varchar(10) ,
-							   Instructor varchar(20),
+							   Instructor_id varchar(20),
                                Semester int,
                                Year int,
-                               Section_no varchar(10),
+                               Section_no varchar(10) not null,
                                Classroom varchar(5),
                                Timing time,
-                               FOREIGN KEY (Course_no) references course(Course_no));
+                               FOREIGN KEY (Course_no) references course(Course_no),
+                               FOREIGN KEY (Instructor_id) references instructor(Instructor_id));
 describe course_offerings;
-alter table course_offerings modify column Section_no varchar(10) not null;
+drop table course_offerings;
 create table student (Stud_id varchar(10) primary key,
 					  First_name varchar(10),
                       Last_name varchar(10),

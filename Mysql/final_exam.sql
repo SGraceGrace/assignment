@@ -11,14 +11,15 @@ describe course;
 create table room(room_id varchar(10) primary key,
                     capacity int,
                     building varchar(10));
-                  
+           
+drop table course;		
 drop table section;
 				
 create table section(section_no varchar(10),
-                    course_id varchar(30),          -- using int instead of varchar error , changing size no error ,
+                    course_id varchar(5),          -- using int instead of varchar error , changing size no error ,
                     enrollment int,
                     foreign key (course_id) references course(course_id));
-                    
+drop table exam;               
 create table exam(exam_id varchar(10) primary key,
                   exam_name varchar(20),
                   course_id varchar(10),

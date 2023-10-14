@@ -196,7 +196,7 @@ public class Blackjack_game {
         System.out.println("************WELCOME************");
         System.out.println();
      do {  
-        System.out.print("BIT AMOUNT (RS.10,RS.50,RS.100,RS.500) : ");
+        System.out.print("BID AMOUNT (RS.10,RS.50,RS.100,RS.500) : ");
         amount = sc.nextInt();
         System.out.println();
         
@@ -277,10 +277,14 @@ public class Blackjack_game {
            System.out.println("\n\n1.PLAY AGAIN \n2.EXIT");
            option=sc.nextInt();
            
+           if(option == 2) {
+        	   System.out.println("GAME OVER !!!!");
+           }else {
            for(Map.Entry<Integer, String> h :  m.entrySet()) {
         	   a.add(h.getKey(),h.getValue());
            }
            m.clear();
+           }
            
      }while(option==1);
            
